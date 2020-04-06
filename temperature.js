@@ -12,7 +12,7 @@ window.onload = function () {
     function run_proc(series,average_array) {
         var proc = cockpit.spawn(["vcgencmd","measure_temp"]);
         proc.done(function(data){
-            pt = parseFloat(data.match(/([0-9\.]+)/)[1]);
+            pt = parseInt(data.match(/([0-9\.]+)/)[1]);
             series.append(new Date().getTime(), pt);
             document.getElementById("cur_temp").innerHTML = pt;
             average_array.push(pt);
@@ -38,5 +38,5 @@ function average(array) {
     for (var i = 0; i < count; i++) {
       sum = sum + array[i];
     }
-    return sum / count;
+    return parseInt(sum / count);
   }
